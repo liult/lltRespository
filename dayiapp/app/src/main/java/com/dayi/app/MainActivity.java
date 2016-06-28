@@ -19,6 +19,11 @@ import android.view.ViewGroup;
 
 import android.widget.TextView;
 
+/**
+ * 首页
+ * Created by liuletao on 16/6/28.
+ */
+
 public class MainActivity extends AppCompatActivity {
 
     /**
