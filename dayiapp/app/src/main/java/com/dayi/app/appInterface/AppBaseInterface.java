@@ -1,6 +1,7 @@
 package com.dayi.app.appInterface;
 
 import android.view.View;
+import android.view.ViewGroup;
 
 import retrofit2.Callback;
 
@@ -12,13 +13,15 @@ import retrofit2.Callback;
 public interface AppBaseInterface extends Callback {
     /**
      * 设置fragment自定义头部信息
-     * @param view fragmnet  view
      * @param leftImageResourceId 左按钮图片资源
      * @param leftText 左边按钮左边文字
      * @param title 中间文字
      * @param rightImageResourceId 有按钮图片资源
      * @param rightText 有按钮文字
      */
+    void initTitle(int leftImageResourceId, String leftText,
+                   String title, int rightImageResourceId, String rightText);
+
     void initTitle(View view, int leftImageResourceId, String leftText,
                    String title, int rightImageResourceId, String rightText);
     /**
@@ -34,11 +37,10 @@ public interface AppBaseInterface extends Callback {
 
     /**
      * 显示加载loading
-     * @param text 提示语
      */
-    void showMaterialProgress(String text);
+    void showLoadingProgress(ViewGroup view);
     /**
      * 隐藏加载loading
      */
-    void hideMaterialProgress();
+    void hideLoadingProgress(ViewGroup view);
 }

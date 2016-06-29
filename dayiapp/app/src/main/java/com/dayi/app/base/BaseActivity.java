@@ -3,12 +3,17 @@ package com.dayi.app.base;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.dayi.app.R;
 import com.dayi.app.appInterface.AppBaseInterface;
+import com.dayi.app.utils.LogUtil;
 import com.dayi.app.utils.UiUtil;
 import com.extras.com.utils.DataUtil;
 import com.readystatesoftware.systembartint.SystemBarTintManager;
@@ -17,15 +22,34 @@ import retrofit2.Call;
 import retrofit2.Response;
 
 
-public class BaseActivity extends AppCompatActivity implements AppBaseInterface {
+public abstract class BaseActivity extends AppCompatActivity implements AppBaseInterface {
 
+    protected RelativeLayout relMain;
+    protected View loadingView = null;
     private TextView leftTv, titleTv, rightTv;
+    public View titleView;
+    private ViewGroup contentView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setSystemBarColor();
+        setContentView(R.layout.activity_base);
+        relMain = (RelativeLayout) findViewById(R.id.rel_main);
+
+        titleView = findViewById(R.id.base_activity_header_view);
+        contentView = (ViewGroup) findViewById(R.id.base_activity_body_view);
+        if (getBodyView() == 0) {
+            LogUtil.e(this.getClass() + "", "the param of layout is error , the value is 0 ");
+            return;
+        }
+        LayoutInflater.from(this).inflate(getBodyView(), contentView, true);
     }
 
+    /**
+     *
+     * @return Activity's Layout
+     */
+    public abstract int getBodyView();
 
     public void setSystemBarColor() {
         //透明状态栏
@@ -39,14 +63,18 @@ public class BaseActivity extends AppCompatActivity implements AppBaseInterface 
         // 激活导航栏设置
         tintManager.setNavigationBarTintEnabled(true);
         // 设置一个颜色给系统栏
-        tintManager.setStatusBarTintColor(Color.parseColor("#ff5a1e"));
+        tintManager.setStatusBarTintColor(Color.parseColor("#0099cc"));
     }
 
     @Override
     public void initTitle(View view, int leftImageResourceId, String leftText, String title, int rightImageResourceId, String rightText) {
-        leftTv = (TextView) view.findViewById(R.id.left_tv);
-        titleTv = (TextView) view.findViewById(R.id.title_tv);
-        rightTv = (TextView) view.findViewById(R.id.right_tv);
+    }
+
+    @Override
+    public void initTitle(int leftImageResourceId, String leftText, String title, int rightImageResourceId, String rightText) {
+        leftTv = (TextView) titleView.findViewById(R.id.left_tv);
+        titleTv = (TextView) titleView.findViewById(R.id.title_tv);
+        rightTv = (TextView) titleView.findViewById(R.id.right_tv);
         if (leftTv == null || titleTv == null || rightTv == null) return;
         //中间文字设置
         if (!DataUtil.isEmpty(title)) {
@@ -98,13 +126,24 @@ public class BaseActivity extends AppCompatActivity implements AppBaseInterface 
     }
 
     @Override
-    public void showMaterialProgress(String text) {
-
+    public void showLoadingProgress(ViewGroup view) {
+        if (view == null) view = relMain;
+        if (loadingView == null) {
+            loadingView = LayoutInflater.from(this).inflate(R.layout.loading_view, null);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
+            view.addView(loadingView, params);
+        }
+        view.bringChildToFront(loadingView);
     }
 
     @Override
-    public void hideMaterialProgress() {
-
+    public void hideLoadingProgress(ViewGroup view) {
+        if (view == null) view = relMain;
+        if (loadingView != null) {
+            view.removeView(loadingView);
+            loadingView = null;
+        }
     }
 
     @Override

@@ -3,7 +3,10 @@ package com.dayi.app.base;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,6 +25,7 @@ import retrofit2.Response;
  */
 public class BaseFragment extends Fragment implements AppBaseInterface {
 
+    protected View loadingView = null;
     private SVProgressHUD mSVProgressHUD;
     private TextView leftTv, titleTv, rightTv;
 
@@ -33,7 +37,10 @@ public class BaseFragment extends Fragment implements AppBaseInterface {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+    }
 
+    @Override
+    public void initTitle(int leftImageResourceId, String leftText, String title, int rightImageResourceId, String rightText) {
     }
 
     @Override
@@ -83,15 +90,19 @@ public class BaseFragment extends Fragment implements AppBaseInterface {
     }
 
     @Override
-    public void showMaterialProgress(String text) {
-        if (!isAdded()) return;
-        if (mSVProgressHUD == null)
-            mSVProgressHUD= new SVProgressHUD(getActivity());
-        mSVProgressHUD.showMaterialishProgress(text);
+    public void showLoadingProgress(ViewGroup view) {
+        if (getActivity() == null) return;
+        if (loadingView == null) {
+            loadingView = LayoutInflater.from(getActivity()).inflate(R.layout.loading_view, null);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
+            view.addView(loadingView, params);
+        }
+        view.bringChildToFront(loadingView);
     }
 
     @Override
-    public void hideMaterialProgress() {
+    public void hideLoadingProgress(ViewGroup view) {
         if (mSVProgressHUD == null) return;
         mSVProgressHUD.dismissImmediately();
     }
@@ -109,7 +120,6 @@ public class BaseFragment extends Fragment implements AppBaseInterface {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        ButterKnife.unbind(this);
     }
 
     @Override
