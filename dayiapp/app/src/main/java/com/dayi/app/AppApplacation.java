@@ -7,8 +7,14 @@ import android.app.Application;
  */
 public class AppApplacation extends Application{
 
+    private static AppApplacation instance = null;
     @Override
     public void onCreate() {
         super.onCreate();
+        instance = this;
+    }
+
+    public static synchronized AppApplacation getInstance() {
+        return instance;
     }
 }

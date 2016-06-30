@@ -24,7 +24,7 @@ import retrofit2.Response;
 
 public abstract class BaseActivity extends AppCompatActivity implements AppBaseInterface {
 
-    protected RelativeLayout relMain;
+    public RelativeLayout relMain;
     protected View loadingView = null;
     private TextView leftTv, titleTv, rightTv;
     public View titleView;
@@ -63,7 +63,7 @@ public abstract class BaseActivity extends AppCompatActivity implements AppBaseI
         // 激活导航栏设置
         tintManager.setNavigationBarTintEnabled(true);
         // 设置一个颜色给系统栏
-        tintManager.setStatusBarTintColor(Color.parseColor("#0099cc"));
+        tintManager.setStatusBarTintColor(Color.parseColor("#12B7F5"));
     }
 
     @Override
