@@ -7,7 +7,7 @@ import com.dayi.app.base.BaseFragment;
 /**
  * @describe MVP Fragment的基类.
  */
-public abstract class BaseMVPFragment<V, P extends BasePresenter<V>> extends BaseFragment {
+public abstract class BaseMVPFragment<V extends BaseInterfaceView, P extends BasePresenter<V>> extends BaseFragment {
 
   protected P mPresenter;
 

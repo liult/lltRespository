@@ -1,1 +1,1 @@
-include ':app', ':HelpUtilsLibrary'
+include ':app', ':extraLibrary:HelpUtilsLibrary'

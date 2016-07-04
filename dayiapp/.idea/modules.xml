@@ -2,9 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/HelpUtilsLibrary/HelpUtilsLibrary.iml" filepath="$PROJECT_DIR$/HelpUtilsLibrary/HelpUtilsLibrary.iml" />
+      <module fileurl="file://$PROJECT_DIR$/extraLibrary/HelpUtilsLibrary/HelpUtilsLibrary.iml" filepath="$PROJECT_DIR$/extraLibrary/HelpUtilsLibrary/HelpUtilsLibrary.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/dayiapp.iml" filepath="$PROJECT_DIR$/dayiapp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/extraLibrary/extraLibrary.iml" filepath="$PROJECT_DIR$/extraLibrary/extraLibrary.iml" />
     </modules>
   </component>
 </project>
