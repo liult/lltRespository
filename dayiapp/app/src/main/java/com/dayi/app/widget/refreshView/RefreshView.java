@@ -1,4 +1,4 @@
-package com.dayi.app.widget.pullRefreshView;
+package com.dayi.app.widget.refreshView;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -18,7 +18,6 @@ import android.view.animation.Interpolator;
 import android.view.animation.Transformation;
 
 import com.dayi.app.R;
-import com.dayi.app.widget.pullRefreshView.PullToRefreshView;
 
 import java.util.HashMap;
 import java.util.Map;

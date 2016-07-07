@@ -1,4 +1,4 @@
-package com.dayi.app.widget.pullRefreshView;
+package com.dayi.app.widget.refreshView;
 
 import android.content.Context;
 import android.support.annotation.NonNull;

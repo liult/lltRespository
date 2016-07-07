@@ -1,10 +1,12 @@
 package com.dayi.app.widget.loadingView;
 
 import android.animation.ValueAnimator;
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.os.Build;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
@@ -98,6 +100,7 @@ public class EyelidView extends View {
     }
 
 
+    @TargetApi(Build.VERSION_CODES.KITKAT)
     @Override
     protected void onVisibilityChanged(View changedView, int visibility) {
         super.onVisibilityChanged(changedView, visibility);

@@ -30,7 +30,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/eye_left"/>
 
-        <com.roger.catloadinglibrary.EyelidView
+        <com.dayi.app.widget.loadingView.EyelidView
             android:layout_marginLeft="3.5dp"
             android:layout_marginTop="12.5dp"
             android:src="@mipmap/eyes"
@@ -46,7 +46,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/eye_right"/>
 
-        <com.roger.catloadinglibrary.EyelidView
+        <com.dayi.app.widget.loadingView.EyelidView
             android:layout_marginLeft="28dp"
             android:layout_marginTop="12.5dp"
             android:src="@mipmap/eyes"
@@ -55,7 +55,7 @@
             android:id="@+id/eyelid_right"/>
     </RelativeLayout>
 
-    <com.roger.catloadinglibrary.GraduallyTextView
+    <com.dayi.app.widget.loadingView.GraduallyTextView
         android:id="@+id/graduallyTextView"
         android:layout_marginBottom="10dp"
         android:textSize="15sp"
