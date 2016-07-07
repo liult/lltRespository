@@ -1,9 +1,13 @@
 package com.dayi.app.biz;
 
 import com.dayi.app.AppApplacation;
+import com.dayi.app.bean.AppConfig;
 import com.dayi.app.bean.AppConfigs;
 import com.dayi.app.network.RetrofitDataService;
 import com.dayi.app.utils.UiUtil;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import rx.Observable;
 import rx.Subscriber;
@@ -19,6 +23,77 @@ public class TechnologyMoudle {
     private String token = null;
 
     public void getData() {
+
+        AppConfig appConfig = new AppConfig();
+        appConfig.setAgreement_url("www.baid.com");
+
+        Observable.create(new Observable.OnSubscribe<String>() {
+            @Override
+            public void call(Subscriber<? super String> subscriber) {
+                subscriber.onNext("www.baid.com");
+            }
+        }).lift(new Observable.Operator<AppConfig, String>() {
+            @Override
+            public Subscriber<? super String> call(Subscriber<? super AppConfig> subscriber) {
+
+
+
+                return new Subscriber<String>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onNext(String s) {
+                        String ss = s;
+                    }
+                };
+            }
+        }).subscribe(new Subscriber<AppConfig>() {
+            @Override
+            public void onCompleted() {
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onNext(AppConfig appConfig) {
+
+            }
+        });
+
+        List<AppConfig> list = new ArrayList<>();
+        Observable.from(list).flatMap(new Func1<AppConfig, Observable<AppConfig>>() {
+            @Override
+            public Observable<AppConfig> call(AppConfig appConfig) {
+                return null;
+            }
+        }).subscribe(new Subscriber<AppConfig>() {
+            @Override
+            public void onCompleted() {
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onNext(AppConfig appConfig) {
+
+            }
+        });
         Observable.create(new Observable.OnSubscribe<String>() {
             @Override
             public void call(Subscriber<? super String> subscriber) {
